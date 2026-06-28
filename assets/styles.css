@@ -353,3 +353,21 @@ html.js .reveal.in{opacity:1;transform:none}
 .sw-cta{display:inline-block;margin-top:16px;animation:swCta 1.8s ease-in-out infinite}
 @keyframes swCta{50%{transform:scale(1.035)}}
 @media(max-width:560px){.sw-head{font-size:15px}.sw-row{font-size:12.5px}}
+
+/* ===== verdict + pros/cons ===== */
+.proscons{background:linear-gradient(180deg,#fff,var(--bg2))}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:16px;align-items:stretch}
+.pc-col{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow2)}
+.pc-col h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.pc-col ul{list-style:none;margin:0;padding:0}
+.pc-col li{display:flex;gap:9px;padding:6px 0;font-size:14.5px;color:var(--ink2);align-items:flex-start}
+.pc-col li::before{flex:0 0 auto;font-weight:800;margin-top:1px}
+.pros h3{color:var(--teal-d)} .pros li::before{content:"✓";color:var(--aqua)}
+.cons h3{color:var(--coral-d)} .cons li::before{content:"!";color:var(--coral);width:14px}
+.pc-verdict{background:linear-gradient(160deg,var(--teal-d),var(--teal));color:#fff;border-radius:var(--r);padding:24px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;box-shadow:var(--shadow)}
+.pc-score{font-family:var(--head);font-weight:800;font-size:44px;line-height:1;margin-bottom:6px}
+.pc-score small{font-size:18px;opacity:.8}
+.pc-verdict .stars{color:var(--star);font-size:17px;letter-spacing:2px;margin-bottom:10px}
+.pc-verdict p{font-size:14.5px;color:rgba(255,255,255,.94);margin:0 0 16px}
+.pc-verdict .btn{background:#fff;color:var(--coral-d);max-width:none;width:100%}
+@media(max-width:860px){.pc-grid{grid-template-columns:1fr}}

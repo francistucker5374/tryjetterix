@@ -419,6 +419,20 @@ LEGIT = {
 def legit_for(code): return LEGIT[legal_key(code)]
 def legal_for(code): return LEGAL[legal_key(code)]
 
+CONTENT = {'en': {'faqs': [{'q': 'Does Jetterix really work?', 'a': "Yes, within its limits. By narrowing your hose's flow into a tight, high-velocity stream, Jetterix genuinely blasts off caked-on dirt, moss, mud and grime that a normal hose just rinses around. It won't match a heavy electric or petrol pressure washer, but for most patio, car and furniture jobs it does the job surprisingly well, especially if your mains pressure is decent."}, {'q': 'Is Jetterix worth it?', 'a': "For most homeowners doing routine outdoor cleaning, we think it is. It's a low-cost, no-power way to get a real pressurised jet without storing a bulky machine, dragging out cords or buying fuel. If you only clean a few times a season and don't need industrial grunt, it's an easy yes; if you're stripping years of grime off a huge driveway every week, a dedicated washer is the better tool."}, {'q': 'Is Jetterix a scam?', 'a': "No, it's a real, functional product, not a scam, though the marketing can oversell it. It's simply a nozzle that converts your mains water into a focused jet, and it does that. Just buy from the official store to make sure you get the genuine item, the discount and the 30-day money-back guarantee rather than a knock-off from a random seller."}, {'q': 'How much does Jetterix cost?', 'a': "The current price is shown on the official store, where it's frequently discounted by up to 75% off. We deliberately don't quote a fixed figure here because pricing and bundle deals change often. Always check the official store for the live price and any multi-pack offers before you buy."}, {'q': 'Where can I buy Jetterix?', 'a': 'The safest place is the official store, which is where the up-to-75%-off pricing and the 30-day money-back guarantee apply. Buying direct also protects you from the cheap imitations that show up on some marketplaces. As a review site we link to the official store rather than selling it ourselves.'}, {'q': 'How do you use Jetterix?', 'a': "It's about as simple as garden gear gets: screw it onto any standard garden hose, turn your tap fully on, and twist the head to switch between a tight jet for tough grime and a wider fan spray for rinsing or delicate surfaces. No setup, no power, no priming. For best results open the mains all the way and hold the jet at a slight angle to lift dirt rather than drive it in."}, {'q': 'Does Jetterix work without electricity?', 'a': "Yes, that's the whole point of it. There's no motor, battery or cord; it runs purely on your home's existing mains water pressure. That makes it handy for places with no nearby outlet, but it also means the spray is only as strong as your water pressure, so very low-pressure supplies will see weaker results."}], 'pros': ['Screws onto any standard hose in seconds, no tools needed', 'No electricity, battery or fuel, runs on mains water alone', 'Switches between a tight jet and a wide fan spray', 'Compact and light, easy to store and carry around', 'Cheap, low-commitment alternative to a full pressure washer'], 'cons': ['Needs decent mains water pressure to perform at its best, weak supplies get weaker results', "It's a nozzle, not a heavy-duty industrial machine, so very stubborn or large-scale jobs still need a dedicated washer", 'The build is lightweight plastic rather than rugged metal, so treat it with reasonable care'], 'verdict': {'score': '4.5/5', 'oneliner': "A genuinely handy, no-power way to turn your hose into a proper cleaning jet, just don't expect it to replace a heavy-duty pressure washer."}}, 'de': {'faqs': [{'q': 'Jetterix Erfahrungen - was sagen Nutzer wirklich?', 'a': 'Die meisten Rückmeldungen sind positiv: Nutzer loben vor allem, wie schnell der Aufsatz montiert ist und wie viel kräftiger der Wasserstrahl im Vergleich zu einer normalen Spritzpistole wird. Kritischer fallen Stimmen aus, bei denen der Wasserdruck zu Hause eher niedrig ist - dann bleibt die Strahlkraft hinter den Erwartungen zurück. Insgesamt ein solides Bild für ein einfaches, stromloses Zubehör.'}, {'q': 'Funktioniert Jetterix wirklich?', 'a': 'Ja, das Prinzip funktioniert: Die verengte Düse bündelt das durchfließende Leitungswasser zu einem deutlich stärkeren Strahl als ein offener Schlauch. Wie stark der Effekt ausfällt, hängt direkt von Ihrem Wasserdruck ab. Wunder eines Profi-Hochdruckreinigers sollten Sie nicht erwarten, aber für lose Verschmutzungen auf Terrasse, Auto oder Zaun reicht die Leistung gut aus.'}, {'q': 'Ist Jetterix seriös oder Abzocke?', 'a': 'Das Produkt selbst ist real und macht das, was es verspricht - ein Düsenaufsatz, der den Wasserstrahl verstärkt. Wichtig ist, nur über den offiziellen Shop zu bestellen, da dort die 30-Tage-Geld-zurück-Garantie gilt und Sie nicht an dubiose Drittanbieter geraten. Halten Sie die Erwartung realistisch: Es ist ein cleveres Zubehör, kein Ersatz für eine teure Maschine - wer das weiß, wird nicht enttäuscht.'}, {'q': 'Was kostet Jetterix?', 'a': 'Den aktuellen Preis nennen wir bewusst nicht aus dem Gedächtnis, da er sich durch Aktionen ändert. Im offiziellen Shop gibt es zeitweise bis zu 75 % Rabatt, und der tagesaktuelle Preis wird dort direkt im Warenkorb angezeigt. Wir empfehlen, den Endpreis immer im offiziellen Shop zu prüfen, bevor Sie bestellen.'}, {'q': 'Wo kann ich Jetterix kaufen?', 'a': 'Am sichersten kaufen Sie über den offiziellen Shop - dort gelten die beworbenen Rabatte und die 30-Tage-Geld-zurück-Garantie. Von Angeboten auf anonymen Marktplätzen oder über Social-Media-Links unbekannter Herkunft raten wir ab, da Sie dort weder die Garantie noch den echten Aktionspreis sicher haben.'}, {'q': 'Wie benutzt man Jetterix?', 'a': 'Sie schrauben den Aufsatz einfach auf das Standardgewinde Ihres Gartenschlauchs oder Ihrer Kupplung - meist ganz ohne Werkzeug. Anschließend drehen Sie das Wasser auf und wählen zwischen dem gebündelten Jet-Strahl für hartnäckigen Schmutz und dem breiten Fächersprühbild für größere Flächen. Für die beste Wirkung halten Sie die Düse in passendem Abstand und arbeiten von oben nach unten.'}, {'q': 'Welche Oberflächen kann Jetterix reinigen?', 'a': 'Gut geeignet ist der Aufsatz für Einfahrten, Terrassen, Wege, Holzdecks, Zäune, Hausfassaden, Autos, Fahrräder und Gartenmöbel. Bei empfindlichen Oberflächen wie lackiertem Auto oder weichem Holz sollten Sie eher das Fächer-Sprühbild und etwas mehr Abstand wählen. Für tief eingebrannten Schmutz oder Ölflecken stößt er - wie jeder Schlauchaufsatz - an seine Grenzen.'}], 'pros': ['Verwandelt jeden normalen Gartenschlauch in Sekunden in einen kräftigen Wasserstrahl', 'Komplett ohne Strom, Motor oder Akku - läuft allein über den Wasserdruck', 'Umschaltbar zwischen scharfem Jet-Strahl und breitem Fächer-Sprühbild', 'Vielseitig für Einfahrt, Terrasse, Auto, Zaun, Fassade und Gartenmöbel', 'Leicht, handlich und ohne Werkzeug auf jedes Standardgewinde geschraubt'], 'cons': ['Braucht einen ordentlichen Leitungsdruck - bei schwachem Hausanschluss fällt die Strahlkraft spürbar geringer aus', 'Ersetzt keinen echten Hochdruckreiniger bei hartnäckigem, eingebranntem Schmutz oder industriellen Aufgaben', 'Das Gehäuse ist überwiegend aus leichtem Kunststoff und wirkt nicht so robust wie ein Profi-Gerät aus Metall'], 'verdict': {'score': '4.5/5', 'oneliner': 'Eine clevere, stromlose Lösung für die meisten Reinigungsarbeiten rund ums Haus - solange man weiß, dass es ein cleverer Schlauchaufsatz und kein vollwertiger Hochdruckreiniger ist.'}}, 'fr': {'faqs': [{'q': 'Jetterix avis : est-ce que ça marche vraiment ?', 'a': "Oui, dans la limite de ce qu'un embout peut faire. En concentrant le débit de votre robinet, le Jetterix transforme un simple tuyau en jet bien plus puissant, suffisant pour déloger mousse, poussière et saletés courantes sur une terrasse, une allée ou une voiture. Ne vous attendez pas aux performances d'un nettoyeur électrique haut de gamme, mais pour un usage domestique régulier, il fait le travail."}, {'q': 'Jetterix arnaque ou pas ?', 'a': "Ce n'est pas une arnaque : le produit existe, est livré et fait ce qu'il annonce, à savoir augmenter la pression de votre tuyau. Le seul piège serait d'en attendre la puissance d'une vraie machine professionnelle, ce qui n'est pas son rôle. En cas de déception, le magasin officiel propose une garantie satisfait ou remboursé de 30 jours."}, {'q': 'Combien coûte Jetterix ?', 'a': "Le prix exact est affiché directement sur le magasin officiel, car il varie selon les promotions et les packs en cours (jusqu'à 75 % de réduction annoncés). Nous ne donnons pas de chiffre fixe ici pour ne pas vous induire en erreur : vérifiez toujours le tarif du jour sur la page officielle avant de commander."}, {'q': 'Où acheter Jetterix ?', 'a': "Le plus sûr est de passer par le magasin officiel, qui garantit le bon produit, les offres en cours et la garantie satisfait ou remboursé de 30 jours. Méfiez-vous des revendeurs inconnus ou des copies à bas prix sur les marketplaces, qui n'offrent pas les mêmes garanties."}, {'q': 'Comment utiliser Jetterix ?', 'a': "Il suffit de visser l'embout sur votre tuyau d'arrosage standard, d'ouvrir le robinet à fond et de choisir le mode voulu : jet concentré pour décoller la saleté incrustée, ou éventail pour rincer une plus grande surface. Tenez l'embout à quelques dizaines de centimètres de la surface et rapprochez-vous progressivement selon le résultat. Aucune installation électrique n'est nécessaire."}, {'q': 'Quelles surfaces Jetterix peut-il nettoyer ?', 'a': "Il convient bien aux allées, terrasses, dalles, lames de terrasse, clôtures, façades, voitures, vélos et mobilier de jardin. Pour les saletés légères à moyennes, il est très pratique. Sur du béton fortement encrassé ou des taches anciennes, il faudra insister davantage qu'avec un nettoyeur électrique."}, {'q': 'Jetterix ou nettoyeur haute pression : lequel choisir ?', 'a': 'Tout dépend de vos besoins. Pour un entretien régulier et léger, sans encombrement ni prise électrique, le Jetterix est un excellent compromis économique sans électricité. Pour des travaux lourds, fréquents ou très exigeants, un vrai nettoyeur haute pression reste plus performant, mais aussi plus cher, plus lourd et plus contraignant.'}], 'pros': ["Se visse sur n'importe quel tuyau d'arrosage standard, sans outil", 'Aucune électricité, ni moteur, ni batterie à recharger', 'Deux modes : jet concentré puissant et brosse en éventail', 'Léger et maniable, facile à ranger après usage', 'Garantie satisfait ou remboursé 30 jours via le magasin officiel'], 'cons': ["Les performances dépendent de votre pression d'eau : avec une pression faible, le jet perd nettement en puissance", "Ce n'est pas un nettoyeur haute pression industriel : pour le béton très encrassé ou les gros chantiers, un modèle électrique reste plus efficace", 'La construction est légère et majoritairement en plastique, à manier avec un minimum de soin'], 'verdict': {'score': '4.6/5', 'oneliner': "Pour un accessoire qui se visse sur le tuyau et coûte une fraction d'un nettoyeur électrique, le Jetterix offre un jet vraiment puissant et fait l'essentiel du travail au quotidien, à condition d'avoir une pression d'eau correcte."}}}
+
+PC = {
+ "en": dict(kick="The honest verdict", h2="Jetterix pros, cons & our verdict", pros_label="What we liked", cons_label="What to keep in mind"),
+ "de": dict(kick="Das ehrliche Fazit", h2="Jetterix Vor- & Nachteile und unser Fazit", pros_label="Was uns gefällt", cons_label="Was Sie wissen sollten"),
+ "fr": dict(kick="Le verdict honnête", h2="Jetterix avantages, inconvénients & notre verdict", pros_label="Ce qu'on a aimé", cons_label="Ce qu'il faut savoir"),
+}
+def all_faqs(g):
+    return list(g["faq"]) + [(f["q"], f["a"]) for f in CONTENT[legal_key(g["code"])]["faqs"]]
+def pros_li(g):
+    return "\n".join("<li>%s</li>" % E(p) for p in CONTENT[legal_key(g["code"])]["pros"])
+def cons_li(g):
+    return "\n".join("<li>%s</li>" % E(c) for c in CONTENT[legal_key(g["code"])]["cons"])
+
 def build_bundles(g):
     L = g["bundle_labels"]
     rows = [
@@ -471,7 +485,7 @@ def build_legit_points(g):
 
 def build_faq(g):
     return "\n".join('<div class="faq-item"><div class="faq-q">%s<span class="pm">+</span></div>'
-                     '<div class="faq-a"><div>%s</div></div></div>' % (E(q), E(a)) for q, a in g["faq"])
+                     '<div class="faq-a"><div>%s</div></div></div>' % (E(q), E(a)) for q, a in all_faqs(g))
 
 def build_steps(g):
     return "\n".join('<div class="step reveal"><div class="n">%d</div><h3>%s</h3><p>%s</p></div>'
@@ -544,10 +558,14 @@ def jsonld(g):
        "description": g["desc"],
        "brand":{"@type":"Brand","name":BRAND}},
       {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-         {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q, a in g["faq"]]},
+         {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q, a in all_faqs(g)]},
       {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
          {"@type":"ListItem","position":1,"name":"Home","item":"%s/%s/" % (DOMAIN, g["code"])},
          {"@type":"ListItem","position":2,"name":BRAND+" Review"}]},
+      {"@context":"https://schema.org","@type":"HowTo","name":g["steps_h2"],
+       "description":g["sub"],
+       "supply":[{"@type":"HowToSupply","name":BRAND+" nozzle"},{"@type":"HowToSupply","name":"standard garden hose"}],
+       "step":[{"@type":"HowToStep","position":i+1,"name":h,"text":p} for i,(h,p) in enumerate(g["steps"])]},
       {"@context":"https://schema.org","@type":"Organization","name":"tryjetterix.com","url":DOMAIN},
     ]
     return '<script type="application/ld+json">%s</script>' % json.dumps(data, ensure_ascii=False)
@@ -579,6 +597,12 @@ def render_page(g, geos):
       "ST_KICK": E(g["steps_kick"]), "ST_H2": E(g["steps_h2"]), "STEPS": build_steps(g),
       "GA_KICK": E(g["gallery_kick"]), "GA_H2": E(g["gallery_h2"]), "GALLERY": build_gallery(),
       "BE_KICK": E(g["benefits_kick"]), "BE_H2": E(g["benefits_h2"]), "BENEFITS": build_benefits(g),
+      "PC_KICK": E(PC[legal_key(g["code"])]["kick"]), "PC_H2": E(PC[legal_key(g["code"])]["h2"]),
+      "PROS_LABEL": E(PC[legal_key(g["code"])]["pros_label"]), "CONS_LABEL": E(PC[legal_key(g["code"])]["cons_label"]),
+      "PROS": pros_li(g), "CONS": cons_li(g),
+      "VERDICT_SCORE": E(CONTENT[legal_key(g["code"])]["verdict"]["score"].split("/")[0]),
+      "VERDICT_OUTOF": E("/" + CONTENT[legal_key(g["code"])]["verdict"]["score"].split("/", 1)[1]) if "/" in CONTENT[legal_key(g["code"])]["verdict"]["score"] else "",
+      "VERDICT_TEXT": E(CONTENT[legal_key(g["code"])]["verdict"]["oneliner"]),
       "OF_KICK": E(g["offer_kick"]), "OF_H2": E(g["offer_h2"]), "OF_SUB": E(g["offer_sub"]),
       "BUNDLES": build_bundles(g), "OFFERCTA": E(g["offer_cta"]), "PAYNOTE": E(g["pay_note"]), "GUARMINI": E(g["guarantee_mini"]),
       "RV_KICK": E(g["reviews_kick"]), "RV_H2": E(g["reviews_h2"]), "REVCARDS": build_reviews(g),
@@ -703,6 +727,21 @@ TEMPLATE = r"""<!DOCTYPE html>
 <section><div class="wrap">
   <div class="sec-head"><span class="kick">{{BE_KICK}}</span><h2>{{BE_H2}}</h2></div>
   <div class="benefits">{{BENEFITS}}</div>
+</div></section>
+
+<!-- VERDICT + PROS/CONS -->
+<section class="proscons"><div class="wrap">
+  <div class="sec-head"><span class="kick">{{PC_KICK}}</span><h2>{{PC_H2}}</h2></div>
+  <div class="pc-grid reveal">
+    <div class="pc-col pros"><h3>{{PROS_LABEL}}</h3><ul>{{PROS}}</ul></div>
+    <div class="pc-col cons"><h3>{{CONS_LABEL}}</h3><ul>{{CONS}}</ul></div>
+    <div class="pc-verdict">
+      <div class="pc-score"><b>{{VERDICT_SCORE}}</b><small>{{VERDICT_OUTOF}}</small></div>
+      <div class="stars">★★★★★</div>
+      <p>{{VERDICT_TEXT}}</p>
+      <a class="btn js-cta" href="#">{{CTA}} →</a>
+    </div>
+  </div>
 </div></section>
 
 <!-- OFFER -->
