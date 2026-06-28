@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://tryjetterix.com/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://tryjetterix.com/us/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="alternate" hreflang="en-US" href="https://tryjetterix.com/us/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://tryjetterix.com/uk/"/><xhtml:link rel="alternate" hreflang="en-AU" href="https://tryjetterix.com/au/"/><xhtml:link rel="alternate" hreflang="de" href="https://tryjetterix.com/de/"/><xhtml:link rel="alternate" hreflang="fr" href="https://tryjetterix.com/fr/"/></url>
 <url><loc>https://tryjetterix.com/uk/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="alternate" hreflang="en-US" href="https://tryjetterix.com/us/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://tryjetterix.com/uk/"/><xhtml:link rel="alternate" hreflang="en-AU" href="https://tryjetterix.com/au/"/><xhtml:link rel="alternate" hreflang="de" href="https://tryjetterix.com/de/"/><xhtml:link rel="alternate" hreflang="fr" href="https://tryjetterix.com/fr/"/></url>
 <url><loc>https://tryjetterix.com/au/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="alternate" hreflang="en-US" href="https://tryjetterix.com/us/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://tryjetterix.com/uk/"/><xhtml:link rel="alternate" hreflang="en-AU" href="https://tryjetterix.com/au/"/><xhtml:link rel="alternate" hreflang="de" href="https://tryjetterix.com/de/"/><xhtml:link rel="alternate" hreflang="fr" href="https://tryjetterix.com/fr/"/></url>
 <url><loc>https://tryjetterix.com/de/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="alternate" hreflang="en-US" href="https://tryjetterix.com/us/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://tryjetterix.com/uk/"/><xhtml:link rel="alternate" hreflang="en-AU" href="https://tryjetterix.com/au/"/><xhtml:link rel="alternate" hreflang="de" href="https://tryjetterix.com/de/"/><xhtml:link rel="alternate" hreflang="fr" href="https://tryjetterix.com/fr/"/></url>
 <url><loc>https://tryjetterix.com/fr/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="alternate" hreflang="en-US" href="https://tryjetterix.com/us/"/><xhtml:link rel="alternate" hreflang="en-GB" href="https://tryjetterix.com/uk/"/><xhtml:link rel="alternate" hreflang="en-AU" href="https://tryjetterix.com/au/"/><xhtml:link rel="alternate" hreflang="de" href="https://tryjetterix.com/de/"/><xhtml:link rel="alternate" hreflang="fr" href="https://tryjetterix.com/fr/"/></url>
+<url><loc>https://tryjetterix.com/us/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/us/terms/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/us/disclosure/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/us/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/uk/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/uk/terms/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/uk/disclosure/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/uk/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/au/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/au/terms/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/au/disclosure/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/au/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/de/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/de/terms/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/de/disclosure/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/de/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/fr/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/fr/terms/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/fr/disclosure/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+<url><loc>https://tryjetterix.com/fr/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>

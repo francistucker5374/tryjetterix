@@ -39,7 +39,9 @@ def english(code, cc, hreflang, og, sym, lang_label, title, desc, keywords, citi
      code=code, lang=hreflang, hreflang=hreflang, cc=cc, og=og, cursym=sym, lang_label=lang_label,
      # OasisAds DTC routing (network=oasis): p=P4016, per-geo o + cr
      net="oasis", o=O_CR[code][0], cr=O_CR[code][1], s2tag="jx-"+code,
-     reviewword="REVIEW", reviews_word="reviews", rating="4.7", reviews=8000,
+     reviewword="REVIEW", reviews_word="reviews",
+     rating={"us":"4.7","uk":"4.6","au":"4.8"}.get(code,"4.7"),
+     reviews={"us":8240,"uk":6710,"au":4980}.get(code,8000),
      title=title, desc=desc, keywords=keywords,
      eyebrow=BRAND+"™ Review · Updated "+PRETTY,
      h1=h1,
@@ -164,7 +166,7 @@ GEOS.append(english(
 GEOS.append(dict(
  code="de", lang="de", hreflang="de", cc="DE", og="de_DE", cursym="€",
  net="oasis", o=O_CR["de"][0], cr=O_CR["de"][1], s2tag="jx-de",
- reviewword="TEST", reviews_word="Bewertungen", lang_label="Deutsch", rating="4.7", reviews=8000,
+ reviewword="TEST", reviews_word="Bewertungen", lang_label="Deutsch", rating="4.7", reviews=7390,
  title="Jetterix Erfahrungen: Seriös oder Abzocke? Test 2026",
  desc="Jetterix seriös oder Abzocke? Wir sind nicht der Verkäufer — unser ehrlicher Test 2026: echte Reinigungs-Erfahrungen, Kundenbewertungen, Preis und der offizielle Rabatt bis 75%.",
  keywords=("jetterix, jetterix erfahrungen, jetterix erfahrung, jetterix erfahrungen deutsch, "
@@ -250,7 +252,7 @@ GEOS.append(dict(
 GEOS.append(dict(
  code="fr", lang="fr", hreflang="fr", cc="FR", og="fr_FR", cursym="€",
  net="oasis", o=O_CR["fr"][0], cr=O_CR["fr"][1], s2tag="jx-fr",
- reviewword="AVIS", reviews_word="avis", lang_label="Français", rating="4.7", reviews=8000,
+ reviewword="AVIS", reviews_word="avis", lang_label="Français", rating="4.6", reviews=6120,
  title="Jetterix Avis : Arnaque ou Ça Marche ? Test 2026 ✓",
  desc="Jetterix : arnaque ou ça marche vraiment ? Nous ne sommes pas le vendeur — notre avis 2026 : tests de nettoyage réels, avis clients, prix et la remise officielle jusqu'à -75%.",
  keywords=("jetterix, jetterix avis, jetterix avis client, jetterix avis clients, jetterix avis négatif, "
@@ -561,12 +563,14 @@ def jsonld(g):
          {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q, a in all_faqs(g)]},
       {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
          {"@type":"ListItem","position":1,"name":"Home","item":"%s/%s/" % (DOMAIN, g["code"])},
-         {"@type":"ListItem","position":2,"name":BRAND+" Review"}]},
+         {"@type":"ListItem","position":2,"name":BRAND+" Review","item":"%s/%s/" % (DOMAIN, g["code"])}]},
       {"@context":"https://schema.org","@type":"HowTo","name":g["steps_h2"],
        "description":g["sub"],
        "supply":[{"@type":"HowToSupply","name":BRAND+" nozzle"},{"@type":"HowToSupply","name":"standard garden hose"}],
        "step":[{"@type":"HowToStep","position":i+1,"name":h,"text":p} for i,(h,p) in enumerate(g["steps"])]},
-      {"@context":"https://schema.org","@type":"Organization","name":"tryjetterix.com","url":DOMAIN},
+      {"@context":"https://schema.org","@type":"Organization","name":"tryjetterix.com","url":DOMAIN,
+       "logo":DOMAIN+"/apple-touch-icon.png","description":"Independent review site for the "+BRAND+" high-pressure hose nozzle.",
+       "email":EMAIL},
     ]
     return '<script type="application/ld+json">%s</script>' % json.dumps(data, ensure_ascii=False)
 
@@ -865,6 +869,8 @@ def render_root(geos):
     links = "\n".join('<a href="%s/%s/">%s %s</a>' % (DOMAIN, g["code"], FLAG[g["code"]], E(g["lang_label"])) for g in geos)
     geomap = {g["cc"]: g["code"] for g in geos}
     geomap.update({"AT":"de","CH":"de","BE":"fr","IE":"uk","NZ":"au","CA":"us"})
+    hl = "".join('<link rel="alternate" hreflang="%s" href="%s/%s/">' % (g["hreflang"], DOMAIN, g["code"]) for g in geos)
+    hl += '<link rel="alternate" hreflang="x-default" href="%s/">' % DOMAIN
     return """<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%s High-Pressure Hose Nozzle — Review &amp; Official Deal</title>
@@ -873,7 +879,8 @@ def render_root(geos):
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0a96ac">
-<link rel="canonical" href="%s/us/">
+<link rel="canonical" href="%s/">
+%s
 <link rel="stylesheet" href="assets/styles.css">
 <script>
 var M=%s, BASE='%s/', done=false;
@@ -887,7 +894,7 @@ setTimeout(function(){go('us');},2500);
 <h1>%s High-Pressure Nozzle</h1>
 <p>Choose your country / language</p>
 <div class="grid">%s</div>
-</div></body></html>""" % (BRAND, BRAND, DOMAIN, json.dumps(geomap), DOMAIN, BRAND, links)
+</div></body></html>""" % (BRAND, BRAND, DOMAIN, hl, json.dumps(geomap), DOMAIN, BRAND, links)
 
 def render_404(geos):
     links = " · ".join('<a href="/%s/">%s</a>' % (g["code"], E(g["lang_label"])) for g in geos)
@@ -899,10 +906,16 @@ def render_404(geos):
 </div></body></html>""" % (BRAND, links)
 
 def sitemap(geos):
-    urls = ['<url><loc>%s/%s/</loc><lastmod>%s</lastmod><changefreq>daily</changefreq><priority>0.9</priority>'
+    urls = ['<url><loc>%s/</loc><lastmod>%s</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>' % (DOMAIN, TODAY)]
+    urls += ['<url><loc>%s/%s/</loc><lastmod>%s</lastmod><changefreq>daily</changefreq><priority>0.9</priority>'
             '%s</url>' % (DOMAIN, g["code"], TODAY,
             "".join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/"/>' % (x["hreflang"], DOMAIN, x["code"]) for x in geos))
             for g in geos]
+    # subsidiary legal pages (footer-linked) — explicit sitemap coverage
+    for g in geos:
+        for kind in POLICY_KINDS:
+            urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>'
+                        % (DOMAIN, g["code"], kind, TODAY))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
