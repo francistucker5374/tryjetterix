@@ -14,6 +14,26 @@
   var OASIS = { base: "https://trkc115.com/c", p: "P4016" };
   var BLITZ = { base: "https://bikiraibn.com/", a: "2397" };
 
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     ⚙️  AFFILIATE LINKS — EDIT HERE to change where each country sends its "Buy" clicks.
+     HOW: uncomment a line (remove the // ) and paste the FULL Direct-to-Checkout (DTC)
+          link from the network. You do NOT add s1/s2 — we attach the jx-<geo> tracking
+          tag automatically so the dashboard keeps splitting revenue by country.
+     Leave a line commented (//) = that country keeps its default OasisAds link.
+     After saving: the site updates itself in ~1 minute. No code, no rebuild.
+       Examples:
+         us: "https://trkc115.com/c?p=P4016&o=O6887&cr=10810",   // OasisAds US (current)
+         de: "https://bikiraibn.com/?a=2397&c=9439",             // switch DE to Blitz
+         fr: "https://bikiraibn.com/?a=2397&c=9566",             // switch FR to Blitz ($60)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  var LINK_OVERRIDE = {
+    // us: "",
+    // uk: "",
+    // au: "",
+    // de: "",
+    // fr: "",
+  };
+
   // ---- capture inbound click-ids ONCE (first-touch) ----
   var TRACK_KEYS = ["gclid", "fbclid", "ttclid", "msclkid", "utm_source", "utm_campaign", "utm_medium", "s1", "s2", "s3"];
   function captureClickIds() {
@@ -34,6 +54,19 @@
     var g = window.GEO || {};
     var t = getTrack();
     var clickid = t.gclid || t.fbclid || t.ttclid || t.msclkid || "";
+    var subtag = g.s2tag || ("jx-" + (g.code || "xx"));
+    // 1) Manual override pasted in LINK_OVERRIDE above wins. We attach the jx-<geo> tag
+    //    in the right sub-id slot (Blitz=s1, others=s2) so geo tracking still works.
+    var ov = LINK_OVERRIDE[g.code];
+    if (ov) {
+      try {
+        var uo = new URL(ov);
+        var isBlitz = /bikiraibn/.test(uo.hostname);
+        uo.searchParams.set(isBlitz ? "s1" : "s2", subtag);
+        if (clickid) uo.searchParams.set(isBlitz ? "s2" : "s3", clickid);
+        return uo.toString();
+      } catch (e) { /* bad URL pasted -> fall through to default */ }
+    }
     var net = g.net || "oasis";
     var u;
     if (net === "blitz") {
