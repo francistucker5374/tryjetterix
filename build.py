@@ -961,8 +961,7 @@ def main():
     write("llms.txt", LLMS)
     write("CNAME", "tryjetterix.com\n")
     write("favicon.svg", FAVICON_SVG)
-    write("158a6df3c9628efeb7363cda95e68b25.txt", "158a6df3c9628efeb7363cda95e68b25
-")  # IndexNow key
+    write("158a6df3c9628efeb7363cda95e68b25.txt", "158a6df3c9628efeb7363cda95e68b25\n")  # IndexNow key
     print("Built %d geo pages + %d policy pages + root + 404 + sitemap + robots + llms + favicon + CNAME" % (n, pol))
     print("Geos:", ", ".join(g["code"] for g in GEOS))
 
