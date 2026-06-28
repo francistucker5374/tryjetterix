@@ -11,8 +11,17 @@ DOMAIN = "https://tryjetterix.com"
 BRAND = "Jetterix"
 EMAIL = "hello@tryjetterix.com"
 TODAY = datetime.date.today().isoformat()
-PRETTY = datetime.date.today().strftime("%B %Y")
-PRETTY_DE = datetime.date.today().strftime("%m/%Y")
+MONTHS = {
+ "en": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+ "de": ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+ "fr": ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+}
+_MON = datetime.date.today().month
+_YR = datetime.date.today().year
+def pretty_for(code):
+    lang = "de" if code == "de" else "fr" if code == "fr" else "en"
+    return "%s %d" % (MONTHS[lang][_MON - 1], _YR)
+PRETTY = pretty_for("us")  # English default for non-geo contexts
 IMAGES = ["hero.webp", "p2.webp", "p3.webp", "p4.webp", "p5.webp", "p6.webp"]
 
 # discount tiers shown on bundle cards (truthful "up to 75%")
@@ -25,7 +34,7 @@ GEOS = []
 
 # ---------- English base (US/UK/AU share this copy) ----------
 def english(code, cc, hreflang, og, sym, lang_label, title, desc, keywords, cities, names,
-            ship, spell_litres="liters"):
+            ship, h1, spell_litres="liters"):
     return dict(
      code=code, lang=hreflang, hreflang=hreflang, cc=cc, og=og, cursym=sym, lang_label=lang_label,
      # OasisAds DTC routing (network=oasis): p=P4016, per-geo o + cr
@@ -33,7 +42,7 @@ def english(code, cc, hreflang, og, sym, lang_label, title, desc, keywords, citi
      reviewword="REVIEW", reviews_word="reviews", rating="4.7", reviews=8000,
      title=title, desc=desc, keywords=keywords,
      eyebrow=BRAND+"™ Review · Updated "+PRETTY,
-     h1='Jetterix Review: does this hose nozzle <span class="hl">really blast away dirt</span> — or is it hype?',
+     h1=h1,
      sub="We're not the seller, so we put the Jetterix high-pressure nozzle through real cleaning jobs — driveway, car, patio, siding. Here's how it performed, the honest pros and cons, and today's official discount.",
      hero_cta="Check Availability & Up to 75% OFF »", cta="Get My Jetterix » Up to 75% OFF",
      hero_note=["No electricity needed", "Fits any garden hose", "30-day money-back"],
@@ -113,41 +122,44 @@ EN_KW = "jetterix, jetterix review, jetterix reviews, jetterix nozzle, jetterix 
 
 GEOS.append(english(
  "us","US","en-US","en_US","$","English (US)",
- "Jetterix Review 2026 » Honest Test: Does This Hose Nozzle Really Work?",
- "Is the Jetterix high-pressure hose nozzle worth it? ✓ Our hands-on 2026 review: real cleaning tests, price, owner reviews & the official up-to-75% OFF deal. Read before you buy.",
+ "Jetterix Review: Legit or Scam? Honest 2026 Test ✓",
+ "Is the Jetterix hose nozzle legit or a scam? We're not the seller — see our hands-on 2026 cleaning tests, real owner reviews, the true price and the official up-to-75% OFF deal.",
  EN_KW,
  ["New York","Los Angeles","Chicago","Houston","Phoenix","Dallas","Atlanta","Miami"],
  ["Mike R.","Jennifer K.","David S.","Ashley M.","Robert T.","Emily W.","James P.","Sarah L."],
- "USA"))
+ "USA",
+ 'Jetterix Review: <span class="hl">legit or a scam?</span> Does this hose nozzle really work?'))
 
 GEOS.append(english(
  "uk","GB","en-GB","en_GB","£","English (UK)",
- "Jetterix Review 2026 » Honest Test, Real Price & Is It Worth It?",
- "Is the Jetterix pressure hose nozzle worth it? ✓ Our hands-on 2026 review: cleaning tests, real owner reviews & the official up-to-75% OFF deal. Read before you buy.",
+ "Jetterix Review » Legit, Scam or Worth It? (UK 2026)",
+ "Jetterix review: legit, scam or worth it? We put the high-pressure hose nozzle through real 2026 cleaning tests — honest pros, cons, the actual price and the official up-to-75% OFF deal.",
  EN_KW,
  ["London","Manchester","Birmingham","Leeds","Glasgow","Liverpool","Bristol","Sheffield"],
  ["James W.","Charlotte B.","Oliver T.","Emily H.","Harry M.","Sophie L.","Jack R.","Amelia S."],
- "UK"))
+ "UK",
+ 'Jetterix Review: <span class="hl">does this hose nozzle really work</span> — or is it a scam?'))
 
 GEOS.append(english(
  "au","AU","en-AU","en_AU","A$","English (AU)",
- "Jetterix Review 2026 » Honest Test: Does This Hose Nozzle Really Work?",
- "Is the Jetterix high-pressure hose nozzle worth it in Australia? ✓ Our hands-on 2026 review: real cleaning tests, owner reviews & the official up-to-75% OFF deal.",
+ "Jetterix Review Australia: Legit or Scam? (2026) ✓",
+ "Is Jetterix legit or a scam in Australia? Our hands-on 2026 review: real cleaning tests, owner reviews, the true price and the official up-to-75% OFF deal. Read before you buy.",
  EN_KW,
  ["Sydney","Melbourne","Brisbane","Perth","Adelaide","Gold Coast","Newcastle","Canberra"],
  ["Jack T.","Olivia M.","William S.","Charlotte B.","Liam R.","Ava H.","Noah P.","Mia L."],
- "Australia"))
+ "Australia",
+ 'Jetterix Review: is this hose nozzle <span class="hl">the real deal — or a scam?</span>'))
 
 # ---------- German (DACH) ----------
 GEOS.append(dict(
  code="de", lang="de", hreflang="de", cc="DE", og="de_DE", cursym="€",
  net="oasis", o=O_CR["de"][0], cr=O_CR["de"][1], s2tag="jx-de",
  reviewword="TEST", reviews_word="Bewertungen", lang_label="Deutsch", rating="4.7", reviews=8000,
- title="Jetterix Erfahrungen: Seriös oder Abzocke? Ehrlicher Test 2026",
- desc="Ist Jetterix seriös oder Abzocke? Unser ehrlicher Test 2026: Reinigungsleistung der Hochdruckdüse, echte Kundenbewertungen, Preis & der offizielle Rabatt bis 75%. Vor dem Kauf lesen.",
+ title="Jetterix Erfahrungen: Seriös oder Abzocke? Test 2026",
+ desc="Jetterix seriös oder Abzocke? Wir sind nicht der Verkäufer — unser ehrlicher Test 2026: echte Reinigungs-Erfahrungen, Kundenbewertungen, Preis und der offizielle Rabatt bis 75%.",
  keywords="jetterix, jetterix erfahrungen, jetterix test, jetterix bewertung, jetterix düse, jetterix hochdruckdüse, jetterix schlauchaufsatz, jetterix preis, jetterix kaufen, ist jetterix seriös, jetterix betrug, jetterix fake, wie funktioniert jetterix, jetterix rabatt, jetterix gartenschlauch, jetterix hochdruckreiniger, jetterix 2026, jetterix deutschland",
- eyebrow=BRAND+"™ Test · Aktualisiert "+PRETTY,
- h1='Jetterix Erfahrungen: <span class="hl">Reinigt diese Hochdruckdüse wirklich</span> — oder ist es nur Hype?',
+ eyebrow=BRAND+"™ Test · Aktualisiert "+pretty_for("de"),
+ h1='Jetterix Erfahrungen: <span class="hl">seriös oder Abzocke?</span> Reinigt die Hochdruckdüse wirklich?',
  sub="Wir sind nicht der Verkäufer. Deshalb haben wir die Jetterix Hochdruckdüse an echten Aufgaben getestet — Einfahrt, Auto, Terrasse, Fassade. Hier lesen Sie, wie sie abschneidet, ehrliche Vor- und Nachteile und den heutigen offiziellen Rabatt.",
  hero_cta="Verfügbarkeit & bis 75% Rabatt »", cta="Jetterix sichern » bis 75% Rabatt",
  hero_note=["Kein Strom nötig", "Passt an jeden Gartenschlauch", "30 Tage Geld-zurück"],
@@ -220,11 +232,11 @@ GEOS.append(dict(
  code="fr", lang="fr", hreflang="fr", cc="FR", og="fr_FR", cursym="€",
  net="oasis", o=O_CR["fr"][0], cr=O_CR["fr"][1], s2tag="jx-fr",
  reviewword="AVIS", reviews_word="avis", lang_label="Français", rating="4.7", reviews=8000,
- title="Jetterix Avis : Arnaque ou Ça Marche ? Test Honnête 2026",
- desc="Jetterix : arnaque ou ça marche vraiment ? Notre avis honnête 2026 sur la buse haute pression : tests de nettoyage, avis clients vérifiés, prix & la remise officielle jusqu'à -75%. À lire avant d'acheter.",
+ title="Jetterix Avis : Arnaque ou Ça Marche ? Test 2026 ✓",
+ desc="Jetterix : arnaque ou ça marche vraiment ? Nous ne sommes pas le vendeur — notre avis 2026 : tests de nettoyage réels, avis clients, prix et la remise officielle jusqu'à -75%.",
  keywords="jetterix, jetterix avis, jetterix test, jetterix buse, jetterix buse haute pression, jetterix nettoyeur, jetterix tuyau arrosage, jetterix prix, jetterix acheter, jetterix arnaque, jetterix fiable, comment fonctionne jetterix, jetterix promo, jetterix réduction, jetterix france, jetterix 2026, avis jetterix, jetterix lance haute pression",
- eyebrow=BRAND+"™ Avis · Mis à jour "+PRETTY,
- h1='Jetterix Avis : <span class="hl">cette buse haute pression nettoie-t-elle vraiment</span> — ou est-ce du vent ?',
+ eyebrow=BRAND+"™ Avis · Mis à jour "+pretty_for("fr"),
+ h1='Jetterix Avis : <span class="hl">arnaque ou ça marche ?</span> Cette buse nettoie-t-elle vraiment ?',
  sub="Nous ne sommes pas le vendeur. Nous avons donc mis la buse haute pression Jetterix à l'épreuve sur de vrais travaux — allée, voiture, terrasse, façade. Voici ce qu'elle vaut, les vrais avantages et limites, et la remise officielle du jour.",
  hero_cta="Disponibilité & jusqu'à -75% »", cta="Je veux ma Jetterix » jusqu'à -75%",
  hero_note=["Aucune électricité", "S'adapte à tout tuyau", "Satisfait ou remboursé 30 jours"],
@@ -463,7 +475,7 @@ def byline(g):
     L = legal_for(g["code"])
     return ('<div class="byline"><img src="../assets/img/am1.webp" alt="" width="30" height="30" loading="lazy">'
             '<span>%s <b>%s</b>, %s</span><span class="sep">·</span><span>%s %s</span><span class="sep">·</span><span>%s</span></div>'
-            % (E(L["reviewed_by"]), E(L["editor"]), E(L["role"]), E(L["updated"]), PRETTY, E(L["hands_on"])))
+            % (E(L["reviewed_by"]), E(L["editor"]), E(L["role"]), E(L["updated"]), pretty_for(g["code"]), E(L["hands_on"])))
 
 def render_policy(g, kind, geos):
     L = legal_for(g["code"]); c = g["code"]
@@ -475,9 +487,11 @@ def render_policy(g, kind, geos):
 '<!DOCTYPE html><html lang="%s"><head>'
 '<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
 '<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="any">'
-'<link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a91d8">'
+'<link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a96ac">'
 '<title>%s — %s</title><meta name="description" content="%s · tryjetterix.com">'
 '<meta name="robots" content="index, follow"><link rel="canonical" href="%s/%s/%s/">%s'
+'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap">'
 '<link rel="stylesheet" href="../../assets/styles.css"></head><body>'
 '<header class="nav"><div class="wrap"><a class="logo" href="/%s/"><span class="dot"></span>%s<small>%s</small></a></div></header>'
 '<main class="legal"><a class="back" href="/%s/">%s</a><h1>%s</h1><div class="upd">%s %s</div>%s</main>'
@@ -486,7 +500,7 @@ def render_policy(g, kind, geos):
 '<div class="copy">© %s tryjetterix.com — independent review · Not the official %s store.</div></div></footer>'
 '</body></html>'
     ) % (g["lang"], E(title), BRAND, E(title), DOMAIN, c, kind, hl,
-         c, BRAND, E(g["reviewword"]), c, E(L["back"]), E(title), E(L["updated"]), PRETTY, body,
+         c, BRAND, E(g["reviewword"]), c, E(L["back"]), E(title), E(L["updated"]), pretty_for(c), body,
          foot_langnav(c), foot_links(g), str(datetime.date.today().year), BRAND)
 
 def hreflang_links(geos):
@@ -495,16 +509,13 @@ def hreflang_links(geos):
     return "\n".join(out)
 
 def jsonld(g):
-    reviews_ld = [{"@type":"Review","author":{"@type":"Person","name":name},
-                   "reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":text}
-                  for name, city, text, days in g["wall"][:5]]
+    # No aggregateRating / Review markup — we don't operate a first-party review system,
+    # so emitting it would be fabricated structured data (Google manual-action risk).
     data = [
       {"@context":"https://schema.org","@type":"Product","name":BRAND+" High-Pressure Hose Nozzle",
        "image":["%s/assets/img/%s" % (DOMAIN, IMAGES[0])],
        "description": g["desc"],
-       "brand":{"@type":"Brand","name":BRAND},
-       "aggregateRating":{"@type":"AggregateRating","ratingValue":g["rating"],"reviewCount":str(g["reviews"]),"bestRating":"5"},
-       "review":reviews_ld},
+       "brand":{"@type":"Brand","name":BRAND}},
       {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
          {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q, a in g["faq"]]},
       {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -576,7 +587,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0a91d8">
+<meta name="theme-color" content="#0a96ac">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESC}}">
 <meta name="keywords" content="{{KEYWORDS}}">
@@ -591,9 +602,11 @@ TEMPLATE = r"""<!DOCTYPE html>
 <meta property="og:url" content="{{CANON}}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="image" href="../assets/img/{{HEROIMG}}">
-<link rel="preconnect" href="https://ipinfo.io">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://trkc115.com" crossorigin>
 <link rel="dns-prefetch" href="https://trkc115.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="../assets/styles.css">
 <script>{{GEOJS}}</script>
 {{JSONLD}}
@@ -601,7 +614,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 <body>
 <div class="announce">
   <span>{{ANNOUNCE_SHIP}}</span>
-  <span>{{ANNOUNCE_CD}} <b data-cd>15:00</b></span>
+  <span>{{ANNOUNCE_CD}} <b data-cd>12:00</b></span>
 </div>
 
 <header class="nav"><div class="wrap">
@@ -621,7 +634,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     {{BYLINE}}
   </div>
   <div class="heroimg">
-    <div class="badge-off"><b>75%</b>OFF</div>
+    <div class="save-badge"><b>75%</b>OFF</div>
     <img src="../assets/img/{{HEROIMG}}" alt="{{BRAND}} high-pressure hose nozzle" width="560" height="560" fetchpriority="high">
   </div>
 </div></section>
@@ -630,11 +643,11 @@ TEMPLATE = r"""<!DOCTYPE html>
 <div class="announce" style="background:#eafaf1;color:#0a7a4f"><span>✓ {{DISCLINE}}</span></div>
 
 <!-- TOP LOW-STOCK STRIP -->
-<div class="stocktop"><div class="wrap"><div class="st-card">
-  <span class="st-ic">🔥</span>
-  <div class="st-body">
-    <div class="st-row"><b class="st-label">{{LS_LABEL}}</b><span class="st-num">⚡ <b><span data-stock2>41</span></b> {{LS_UNIT}}</span></div>
-    <div class="ls-track"><i class="ls-fill" data-stockbar></i></div>
+<div class="urgenttop"><div class="wrap"><div class="ut-card">
+  <span class="ut-ic">🔥</span>
+  <div class="ut-body">
+    <div class="ut-row"><b class="ut-label">{{LS_LABEL}}</b><span class="ut-num">⚡ <b><span data-stock2>37</span></b> {{LS_UNIT}}</span></div>
+    <div class="depbar"><i class="depfill" data-stockbar></i></div>
   </div>
 </div></div></div>
 
@@ -693,10 +706,10 @@ TEMPLATE = r"""<!DOCTYPE html>
 </div></section>
 
 <!-- SCAM / LEGIT -->
-<section class="legit"><div class="wrap">
+<section class="verdict"><div class="wrap">
   <div class="sec-head"><span class="kick">⚠️ {{LEGIT_KICK}}</span><h2>{{LEGIT_H2}}</h2></div>
-  <div class="legit-box reveal">
-    <div class="verdict">{{LEGIT_VERDICT}}</div>
+  <div class="verdict-box reveal">
+    <div class="verdict-lead">{{LEGIT_VERDICT}}</div>
     <ul>{{LEGIT_POINTS}}</ul>
     <div class="bottom">{{LEGIT_BOTTOM}}</div>
     <a class="btn pulse js-cta" href="#">{{CTA}} <span class="arw">→</span></a>
@@ -718,17 +731,17 @@ TEMPLATE = r"""<!DOCTYPE html>
 
 <!-- FINAL -->
 <section class="final"><div class="wrap">
-  <div class="cd">⏳ {{FN_CD}} <b data-cd>15:00</b></div>
+  <div class="cd">⏳ {{FN_CD}} <b data-cd>12:00</b></div>
   <h2>{{FN_H2}}</h2><p>{{FN_P}}</p>
   <a class="btn js-cta" href="#">{{FN_CTA}} <span class="arw">→</span></a>
 </div></section>
 
 <!-- LOW-STOCK ALERT (above footer) -->
-<div class="lowstock"><div class="ls-in">
-  <div class="ls-head"><span class="ls-flame">🔥</span> {{LS_LABEL}}</div>
-  <div class="ls-track"><i class="ls-fill" data-stockbar></i></div>
-  <div class="ls-row"><span class="ls-sub">{{LS_SUB}}</span><span class="ls-count"><b><span data-stock2>41</span></b> {{LS_UNIT}}</span></div>
-  <a class="btn js-cta ls-cta" href="#">{{LS_CTA}}</a>
+<div class="stockwarn"><div class="sw-card">
+  <div class="sw-head"><span class="sw-flame">🔥</span> {{LS_LABEL}}</div>
+  <div class="depbar"><i class="depfill" data-stockbar></i></div>
+  <div class="sw-row"><span class="sw-sub">{{LS_SUB}}</span><span class="sw-count"><b><span data-stock2>37</span></b> {{LS_UNIT}}</span></div>
+  <a class="btn js-cta sw-cta" href="#">{{LS_CTA}}</a>
 </div></div>
 
 <footer><div class="wrap">
@@ -739,37 +752,37 @@ TEMPLATE = r"""<!DOCTYPE html>
 </div></footer>
 
 <!-- STICKY BAR -->
-<div class="stickybar"><div class="wrap">
-  <div class="sb-info"><img src="../assets/img/{{HEROIMG}}" alt=""><div class="sb-txt"><b>{{STICKY_LABEL}}</b><span>{{STICKY_PRICE}}</span></div></div>
+<div class="buybar"><div class="wrap">
+  <div class="bb-info"><img src="../assets/img/{{HEROIMG}}" alt=""><div class="bb-txt"><b>{{STICKY_LABEL}}</b><span>{{STICKY_PRICE}}</span></div></div>
   <a class="btn js-cta" href="#">{{CTA}} →</a>
 </div></div>
 
 <!-- SOCIAL PROOF TICKER -->
-<div id="sp-toast"></div>
+<div id="livefeed"></div>
 
 <!-- EXIT MODAL -->
-<div class="modal-bg" id="exit-modal"><div class="modal">
+<div class="popbg" id="exitpop"><div class="pop">
   <span class="x" data-close-exit>×</span>
   <div class="top"><h3>{{EX_TITLE}}</h3><p>{{EX_SUB}}</p></div>
   <div class="body">
     <img src="../assets/img/{{HEROIMG}}" alt="{{BRAND}}">
-    <div class="mcd">⏳ <span data-mcd>15:00</span></div>
+    <div class="mcd">⏳ <span data-mcd>12:00</span></div>
     <a class="btn js-cta" href="#">{{EX_CTA}}</a>
     <button class="decline" data-close-exit>{{EX_DECLINE}}</button>
   </div>
 </div></div>
 
 <!-- REDIRECT OVERLAY -->
-<div id="redirect"><div class="rd-card">
-  <div class="rd-ring">
-    <svg viewBox="0 0 84 84"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a91d8"/><stop offset="1" stop-color="#0fb98a"/></linearGradient></defs>
+<div id="handoff"><div class="ho-card">
+  <div class="ho-ring">
+    <svg viewBox="0 0 84 84"><defs><linearGradient id="splash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a96ac"/><stop offset="1" stop-color="#14ccae"/></linearGradient></defs>
       <circle class="bg" cx="42" cy="42" r="36"/><circle class="fg" cx="42" cy="42" r="36"/></svg>
-    <span class="rd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg></span>
+    <span class="ho-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg></span>
   </div>
-  <div class="rd-title">{{RED_T}}</div>
-  <ul class="rd-steps"><li>{{RED_S1}}</li><li>{{RED_S2}}</li><li>{{RED_S3}}</li></ul>
-  <div class="rd-bar"><i></i></div>
-  <div class="rd-sub">🔒 {{RED_S}}</div>
+  <div class="ho-title">{{RED_T}}</div>
+  <ul class="ho-steps"><li>{{RED_S1}}</li><li>{{RED_S2}}</li><li>{{RED_S3}}</li></ul>
+  <div class="ho-bar"><i></i></div>
+  <div class="ho-sub">🔒 {{RED_S}}</div>
 </div></div>
 
 <script src="../assets/config.js"></script>
@@ -793,7 +806,7 @@ def render_root(geos):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0a91d8">
+<meta name="theme-color" content="#0a96ac">
 <link rel="canonical" href="%s/us/">
 <link rel="stylesheet" href="assets/styles.css">
 <script>
@@ -837,10 +850,12 @@ SITEMAP_XSL = """<?xml version="1.0" encoding="UTF-8"?>
 <html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>tryjetterix.com &#8211; XML Sitemap</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
 <style>
-  :root{--ink:#0f1b2d;--mut:#6b7c93;--line:#e4ebf2;--bg:#f5f9fc;--blue:#0a91d8;--blue2:#0b6fb3;--mint:#0fb98a}
+  :root{--ink:#06222a;--mut:#4f6e78;--line:#d6e7ea;--bg:#eef9f9;--blue:#0a96ac;--blue2:#06748a;--mint:#14ccae}
   *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
   .wrap{max-width:1000px;margin:0 auto;padding:0 18px 50px}
-  header{background:linear-gradient(120deg,#0b6fb3,#0a91d8);color:#fff;padding:30px 18px} header .in{max-width:1000px;margin:0 auto}
+  body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  header{background:linear-gradient(120deg,#06748a,#0a96ac);color:#fff;padding:30px 18px} header .in{max-width:1000px;margin:0 auto}
+  .logo .dot{border-radius:50% 50% 50% 0!important;transform:rotate(45deg)}
   .logo{font-weight:800;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
   .logo .dot{width:11px;height:11px;border-radius:50%;background:#19c2e6;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
   h1{font-size:20px;margin:14px 0 4px} header p{margin:0;opacity:.9;font-size:14px}
@@ -854,7 +869,7 @@ SITEMAP_XSL = """<?xml version="1.0" encoding="UTF-8"?>
   .foot{color:var(--mut);font-size:12.5px;margin-top:16px} @media(max-width:640px){.hideS{display:none}}
 </style></head><body>
 <header><div class="in"><div class="logo"><span class="dot"></span>Jetterix</div><h1>XML Sitemap</h1>
-<p><xsl:value-of select="count(s:urlset/s:url)"/> URLs &#183; submitted to search engines</p></div></header>
+<p><xsl:value-of select="count(s:urlset/s:url)"/> indexed pages &#183; Jetterix review network</p></div></header>
 <div class="wrap"><div class="card"><table>
   <thead><tr><th class="idx">#</th><th>URL</th><th>Languages</th><th class="hideS">Last modified</th><th class="hideS">Frequency</th><th>Priority</th></tr></thead>
   <tbody><xsl:for-each select="s:urlset/s:url"><tr>
@@ -865,7 +880,7 @@ SITEMAP_XSL = """<?xml version="1.0" encoding="UTF-8"?>
     <td class="hideS"><xsl:value-of select="s:changefreq"/></td>
     <td><span class="pri"><xsl:value-of select="s:priority"/></span></td>
   </tr></xsl:for-each></tbody>
-</table></div><p class="foot">This is an XML sitemap, meant for search engines. Generated for tryjetterix.com.</p></div>
+</table></div><p class="foot">Machine-readable sitemap for search crawlers &#183; tryjetterix.com</p></div>
 </body></html></xsl:template></xsl:stylesheet>
 """
 
@@ -891,11 +906,11 @@ Localized hands-on reviews, real cleaning tests and the official discount for US
 """
 
 FAVICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a91d8"/><stop offset="1" stop-color="#0fb98a"/></linearGradient></defs>
-<rect width="64" height="64" rx="16" fill="url(#g)"/>
-<g fill="#fff"><rect x="14" y="27" width="20" height="10" rx="3"/><path d="M14 30h-4l-2-3v9l2-3h4z"/></g>
-<g stroke="#fff" stroke-width="2.6" stroke-linecap="round"><line x1="36" y1="32" x2="52" y2="22"/><line x1="36" y1="32" x2="54" y2="32"/><line x1="36" y1="32" x2="52" y2="42"/></g>
-<circle cx="36" cy="32" r="3" fill="#fff"/></svg>
+<defs><linearGradient id="d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2fe0d6"/><stop offset=".55" stop-color="#0a96ac"/><stop offset="1" stop-color="#06748a"/></linearGradient></defs>
+<circle cx="32" cy="32" r="30" fill="#e9f7f8"/>
+<path d="M32 13 C40 25 46 31 46 40 a14 14 0 1 1 -28 0 C18 31 24 25 32 13 Z" fill="url(#d)"/>
+<path d="M26.5 32 a6 7 0 0 0 -1.5 9.5" fill="none" stroke="#c9f6f1" stroke-width="3" stroke-linecap="round"/>
+<circle cx="32" cy="11.5" r="3.4" fill="#fb5733"/></svg>
 """
 
 def write(path, content):

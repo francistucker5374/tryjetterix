@@ -1,173 +1,157 @@
-/* Jetterix — funnel behaviour: reveal anim, countdown, FOMO, ticker, exit-intent, redirect. */
+/* Jetterix — page behaviour: scroll-reveal, deadline, scarcity, live feed, exit catch, store hand-off. */
 (function () {
   "use strict";
-  var G = window.GEO || {};
-  var I = G.i18n || {};
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var rnd = function (a) { return a[Math.floor(Math.random() * a.length)]; };
+  var GEO = window.GEO || {};
+  var TXT = GEO.i18n || {};
+  var pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
+  var qs = function (sel, root) { return (root || document).querySelector(sel); };
+  var qsa = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
-  /* ---------- subtle reveal-on-scroll ---------- */
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  /* ---- scroll reveal (with a no-scroll safety net) ---- */
+  (function reveal() {
+    var items = qsa(".reveal");
+    if (!("IntersectionObserver" in window)) { items.forEach(function (n) { n.classList.add("in"); }); return; }
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); seen.unobserve(e.target); } });
     }, { threshold: 0.12 });
-    $$(".reveal").forEach(function (el) { io.observe(el); });
-  } else { $$(".reveal").forEach(function (el) { el.classList.add("in"); }); }
-  // backstop: never leave content hidden if the observer misses (non-scrolling sessions, bots)
-  setTimeout(function () { $$(".reveal").forEach(function (el) { el.classList.add("in"); }); }, 4000);
+    items.forEach(function (n) { seen.observe(n); });
+    setTimeout(function () { items.forEach(function (n) { n.classList.add("in"); }); }, 4200);
+  })();
 
-  /* ---------- evergreen countdown ---------- */
-  var WINDOW = 15 * 60 * 1000;
-  function cdEnd() {
-    var e = +localStorage.getItem("jx_cd_end");
-    if (!e || e < Date.now()) { e = Date.now() + WINDOW; localStorage.setItem("jx_cd_end", e); }
-    return e;
+  /* ---- rolling deadline (12-minute window, persisted) ---- */
+  var SPAN = 12 * 60 * 1000;
+  function deadline() {
+    var end = +localStorage.getItem("jx_deadline");
+    if (!end || end < Date.now()) { end = Date.now() + SPAN; localStorage.setItem("jx_deadline", end); }
+    return end;
   }
-  var END = cdEnd();
-  function tickCd() {
-    var left = Math.max(0, END - Date.now());
-    var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
-    var txt = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
-    $$("[data-cd]").forEach(function (el) { el.textContent = txt; });
-    $$("[data-mcd]").forEach(function (el) { el.textContent = txt; });
-    if (left <= 0) { END = Date.now() + WINDOW; localStorage.setItem("jx_cd_end", END); }
+  var endAt = deadline();
+  function paintClock() {
+    var ms = Math.max(0, endAt - Date.now());
+    var mm = Math.floor(ms / 60000), ss = Math.floor((ms % 60000) / 1000);
+    var label = (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss;
+    qsa("[data-cd]").forEach(function (n) { n.textContent = label; });
+    qsa("[data-mcd]").forEach(function (n) { n.textContent = label; });
+    if (ms <= 0) { endAt = Date.now() + SPAN; localStorage.setItem("jx_deadline", endAt); }
   }
-  tickCd(); setInterval(tickCd, 1000);
+  paintClock(); setInterval(paintClock, 1000);
 
-  /* ---------- low stock + viewers ---------- */
-  var stock = +localStorage.getItem("jx_stock") || (6 + Math.floor(Math.random() * 8));
-  function paintStock() { $$("[data-stock]").forEach(function (e) { e.textContent = stock; }); }
-  paintStock();
-  setInterval(function () { if (stock > 2 && Math.random() < 0.16) { stock--; localStorage.setItem("jx_stock", stock); paintStock(); } }, 11000);
+  /* ---- scarcity: live unit count + offer-side stock ---- */
+  var atPrice = +localStorage.getItem("jx_left") || (5 + Math.floor(Math.random() * 7));   // 5-11
+  function paintAtPrice() { qsa("[data-stock]").forEach(function (n) { n.textContent = atPrice; }); }
+  paintAtPrice();
+  setInterval(function () { if (atPrice > 2 && Math.random() < 0.18) { atPrice--; localStorage.setItem("jx_left", atPrice); paintAtPrice(); } }, 12000);
 
-  /* ---------- low-stock alert bar (above footer) ---------- */
-  var stock2 = +localStorage.getItem("jx_stock2") || (38 + Math.floor(Math.random() * 9)); // ~38-46
-  function paintStock2() {
-    $$("[data-stock2]").forEach(function (e) { e.textContent = stock2; });
-    var pct = Math.max(6, Math.min(22, stock2 / 3)); // always reads "low" (~13-15%)
-    $$("[data-stockbar]").forEach(function (e) { e.style.width = pct + "%"; });
+  var units = +localStorage.getItem("jx_units") || (33 + Math.floor(Math.random() * 11));   // 33-43
+  function paintUnits() {
+    qsa("[data-stock2]").forEach(function (n) { n.textContent = units; });
+    var pct = Math.max(7, Math.min(24, units / 2.6));
+    qsa("[data-stockbar]").forEach(function (n) { n.style.width = pct + "%"; });
   }
-  paintStock2();
-  setInterval(function () { if (stock2 > 7 && Math.random() < 0.22) { stock2--; localStorage.setItem("jx_stock2", stock2); paintStock2(); } }, 9000);
+  paintUnits();
+  setInterval(function () { if (units > 6 && Math.random() < 0.2) { units--; localStorage.setItem("jx_units", units); paintUnits(); } }, 10000);
 
-  var viewers = 14 + Math.floor(Math.random() * 33);
-  function paintViewers() { $$("[data-viewers]").forEach(function (e) { e.textContent = viewers; }); }
-  paintViewers();
-  setInterval(function () { viewers += (Math.random() < 0.5 ? -1 : 2); if (viewers < 8) viewers = 8; paintViewers(); }, 4200);
+  var watching = 17 + Math.floor(Math.random() * 28);
+  function paintWatching() { qsa("[data-viewers]").forEach(function (n) { n.textContent = watching; }); }
+  paintWatching();
+  setInterval(function () { watching += (Math.random() < 0.5 ? -1 : 2); if (watching < 9) watching = 9; paintWatching(); }, 4500);
 
-  /* ---------- sticky buy bar ---------- */
-  var bar = $(".stickybar");
-  if (bar) addEventListener("scroll", function () {
-    bar.classList.toggle("show", scrollY > innerHeight * 0.6);
-  }, { passive: true });
+  /* ---- sticky buy bar ---- */
+  var dock = qs(".buybar");
+  if (dock) addEventListener("scroll", function () { dock.classList.toggle("show", scrollY > innerHeight * 0.6); }, { passive: true });
 
-  /* ---------- language dropdown ---------- */
-  var lang = $(".lang");
-  if (lang) {
-    $(".lang button").addEventListener("click", function (e) { e.stopPropagation(); lang.classList.toggle("open"); });
-    document.addEventListener("click", function () { lang.classList.remove("open"); });
+  /* ---- language menu ---- */
+  var langMenu = qs(".lang");
+  if (langMenu) {
+    qs(".lang button").addEventListener("click", function (e) { e.stopPropagation(); langMenu.classList.toggle("open"); });
+    document.addEventListener("click", function () { langMenu.classList.remove("open"); });
   }
 
-  /* ---------- FAQ accordion ---------- */
-  $$(".faq-item").forEach(function (it) {
-    $(".faq-q", it).addEventListener("click", function () {
-      var open = it.classList.toggle("open");
-      var a = $(".faq-a", it);
-      a.style.maxHeight = open ? a.scrollHeight + "px" : 0;
+  /* ---- FAQ accordion ---- */
+  qsa(".faq-item").forEach(function (item) {
+    qs(".faq-q", item).addEventListener("click", function () {
+      var open = item.classList.toggle("open");
+      var ans = qs(".faq-a", item);
+      ans.style.maxHeight = open ? ans.scrollHeight + "px" : 0;
     });
   });
 
-  /* ---------- redirect overlay -> affiliate DTC ---------- */
-  var redirecting = false;
-  function goOffer() {
-    if (redirecting) return; redirecting = true;
-    var m = $("#exit-modal"); if (m) m.classList.remove("show");     // never stack popups over the redirect
-    var ov = $("#redirect"); if (ov) ov.classList.add("show");
-    var url = (window.JETTERIX && window.JETTERIX.buildOfferUrl && window.JETTERIX.buildOfferUrl()) || "https://trkc115.com/c?p=P4016&o=O6887&cr=10810";
-    var nav = function () { try { window.location.href = url; } catch (e) { try { window.location.assign(url); } catch (e2) {} } };
-    setTimeout(nav, 650);                                            // quick hand-off (was 1650 — felt stuck)
-    setTimeout(function () { if (!document.hidden) nav(); }, 3500);  // hard fallback if the first navigation didn't take
+  /* ---- store hand-off overlay -> affiliate DTC ---- */
+  var handingOff = false;
+  function toStore() {
+    if (handingOff) return; handingOff = true;
+    var pop = qs("#exitpop"); if (pop) pop.classList.remove("show");
+    var ov = qs("#handoff"); if (ov) ov.classList.add("show");
+    var dest = (window.JETTERIX && window.JETTERIX.buildOfferUrl && window.JETTERIX.buildOfferUrl()) || "https://trkc115.com/c?p=P4016&o=O6887&cr=10810";
+    var nav = function () { try { window.location.href = dest; } catch (e) { try { window.location.assign(dest); } catch (e2) {} } };
+    setTimeout(nav, 680);
+    setTimeout(function () { if (!document.hidden) nav(); }, 3600);
   }
   document.addEventListener("click", function (e) {
-    var t = e.target.closest(".js-cta"); if (!t) return;
-    e.preventDefault(); goOffer();
+    var hit = e.target.closest(".js-cta"); if (!hit) return;
+    e.preventDefault(); toStore();
   });
 
-  /* ---------- auto-advance to the offer after engagement (bot-safe) ---------- */
-  // Never fires for crawlers/automation (protects SEO) or before a real interaction.
+  /* ---- auto-advance after engagement (never for bots / pre-interaction) ---- */
   if (!navigator.webdriver) {
     var armed = false;
     var arm = function () {
       if (armed) return; armed = true;
-      setTimeout(function () { if (!document.hidden && !redirecting) goOffer(); }, 30000);
+      setTimeout(function () { if (!document.hidden && !handingOff) toStore(); }, 28000);
     };
     ["scroll", "mousemove", "touchstart", "keydown", "pointerdown"].forEach(function (ev) {
       addEventListener(ev, arm, { once: true, passive: true });
     });
   }
 
-  /* ---------- social-proof ticker ---------- */
-  var toast = $("#sp-toast");
-  if (toast && window.JETTERIX) {
-    window.JETTERIX.getGeo().then(function (geo) {
-      var cities = G.cities || ["Berlin"];
-      var names = G.names || ["Alex M."];
-      var products = I.products || ["the 2-pack"];
-      var tpl = I.tpl || "<b>{name}</b> in {city} just bought {product}";
-      var count = 0;
-
-      function agoText(min) {
-        if (min <= 1) return I.ago_just || "just now";
-        return (I.ago_min || "{n} min ago").replace("{n}", min);
+  /* ---- live social-proof feed ---- */
+  var feed = qs("#livefeed");
+  if (feed && window.JETTERIX) {
+    window.JETTERIX.getGeo().then(function (loc) {
+      var cities = GEO.cities || ["London"];
+      var names = GEO.names || ["Alex M."];
+      var bundles = TXT.products || ["the 2-pack"];
+      var line = TXT.tpl || "<b>{name}</b> in {city} just ordered {product}";
+      var shown = 0;
+      function ago(min) { return min <= 1 ? (TXT.ago_just || "just now") : (TXT.ago_min || "{n} min ago").replace("{n}", min); }
+      function render() {
+        var city = (loc.city && Math.random() < 0.4) ? loc.city : pick(cities);
+        var body = line.replace("{name}", "<b>" + pick(names) + "</b>").replace("{city}", city).replace("{product}", pick(bundles));
+        var min = 1 + Math.floor(Math.random() * 26);
+        return '<img src="' + (GEO.thumb || "") + '" alt="">' +
+               '<div class="lf-body">' + body + '<span class="lf-ago">✔ ' + (TXT.verified || "Verified") + " · " + ago(min) + "</span></div>" +
+               '<span class="lf-x" aria-label="close">×</span>';
       }
-      function build() {
-        // show the visitor's detected city ~40% of the time, else a random local city
-        var city = (geo.city && Math.random() < 0.4) ? geo.city : rnd(cities);
-        var line = tpl.replace("{name}", "<b>" + rnd(names) + "</b>").replace("{city}", city).replace("{product}", rnd(products));
-        var min = 1 + Math.floor(Math.random() * 27);
-        return '<img src="' + (G.thumb || "") + '" alt="">' +
-               '<div class="sp-b">' + line + '<span class="sp-ago">✔ ' + (I.verified || "Verified") + " · " + agoText(min) + "</span></div>" +
-               '<span class="sp-x" aria-label="close">×</span>';
-      }
-      function show() {
-        if (count++ >= 14) return;
+      function tick() {
+        if (shown++ >= 14) return;
         if (!document.hidden) {
-          toast.innerHTML = build();
-          toast.classList.add("show");
-          $(".sp-x", toast).addEventListener("click", function () { toast.classList.remove("show"); });
-          setTimeout(function () { toast.classList.remove("show"); }, 5200);
+          feed.innerHTML = render();
+          feed.classList.add("show");
+          qs(".lf-x", feed).addEventListener("click", function () { feed.classList.remove("show"); });
+          setTimeout(function () { feed.classList.remove("show"); }, 5200);
         }
-        setTimeout(show, 8500 + Math.random() * 12000);
+        setTimeout(tick, 8000 + Math.random() * 12000);
       }
-      setTimeout(show, 5200);
+      setTimeout(tick, 5000);
     });
   }
 
-  /* ---------- exit-intent + back-button trap ---------- */
-  var modal = $("#exit-modal");
-  function showExit() {
-    if (!modal) return;
-    if (sessionStorage.getItem("jx_exit")) return;
-    sessionStorage.setItem("jx_exit", "1");
-    modal.classList.add("show");
+  /* ---- exit catch (cursor-out + back-button) ---- */
+  var exitPop = qs("#exitpop");
+  function openExit() {
+    if (!exitPop || sessionStorage.getItem("jx_seen")) return;
+    sessionStorage.setItem("jx_seen", "1");
+    exitPop.classList.add("show");
   }
-  if (modal) {
-    // desktop: cursor leaves toward the top
-    document.addEventListener("mouseout", function (e) {
-      if (e.clientY <= 0 && !e.relatedTarget) showExit();
-    });
-    // mobile + desktop: back-button trap (one extra push to re-capture)
+  if (exitPop) {
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) openExit(); });
     try {
       history.pushState(null, "", location.href);
       addEventListener("popstate", function () {
-        if (!sessionStorage.getItem("jx_exit")) { showExit(); history.pushState(null, "", location.href); }
+        if (!sessionStorage.getItem("jx_seen")) { openExit(); history.pushState(null, "", location.href); }
       });
     } catch (e) {}
-    // close handlers
-    $$("[data-close-exit]", modal).forEach(function (b) {
-      b.addEventListener("click", function () { modal.classList.remove("show"); });
-    });
-    modal.addEventListener("click", function (e) { if (e.target === modal) modal.classList.remove("show"); });
+    qsa("[data-close-exit]", exitPop).forEach(function (b) { b.addEventListener("click", function () { exitPop.classList.remove("show"); }); });
+    exitPop.addEventListener("click", function (e) { if (e.target === exitPop) exitPop.classList.remove("show"); });
   }
 })();

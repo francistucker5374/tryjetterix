@@ -13,7 +13,6 @@
 
   var OASIS = { base: "https://trkc115.com/c", p: "P4016" };
   var BLITZ = { base: "https://bikiraibn.com/", a: "2397" };
-  var IPINFO_TOKEN = "fcc8c88c9a040a"; // ticker geo; ipwho.is is keyless fallback
 
   // ---- capture inbound click-ids ONCE (first-touch) ----
   var TRACK_KEYS = ["gclid", "fbclid", "ttclid", "msclkid", "utm_source", "utm_campaign", "utm_medium", "s1", "s2", "s3"];
@@ -54,7 +53,7 @@
     return u.toString();
   }
 
-  // ---- visitor geo for the social-proof ticker (ipinfo -> ipwho.is -> page default) ----
+  // ---- visitor geo for the live feed (keyless ipwho.is -> geojs -> page default) ----
   function getGeo() {
     return new Promise(function (resolve) {
       try {
@@ -65,19 +64,16 @@
       var done = false;
       function finish(geo) { if (done) return; done = true; try { localStorage.setItem("jx_geo", JSON.stringify(geo)); } catch (e) {} resolve(geo); }
       var timer = setTimeout(function () { finish(def); }, 3000);
-      function tryIpinfo() {
-        fetch("https://ipinfo.io/json?token=" + IPINFO_TOKEN, { cache: "no-store" })
-          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-          .then(function (d) { if (d && d.country) { clearTimeout(timer); finish({ cc: d.country, city: d.city || null }); } else tryIpwho(); })
-          .catch(tryIpwho);
-      }
-      function tryIpwho() {
-        fetch("https://ipwho.is/", { cache: "no-store" })
+      function tryGeojs() {
+        fetch("https://get.geojs.io/v1/ip/geo.json", { cache: "no-store" })
           .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
           .then(function (d) { clearTimeout(timer); finish({ cc: (d && d.country_code) || def.cc, city: (d && d.city) || null }); })
           .catch(function () { clearTimeout(timer); finish(def); });
       }
-      tryIpinfo();
+      fetch("https://ipwho.is/", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) { if (d && d.success !== false && d.country_code) { clearTimeout(timer); finish({ cc: d.country_code, city: d.city || null }); } else tryGeojs(); })
+        .catch(tryGeojs);
     });
   }
 
