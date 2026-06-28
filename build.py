@@ -118,7 +118,17 @@ O_CR = {
  "fr": ("O6791", "10609"),
 }
 
-EN_KW = "jetterix, jetterix review, jetterix reviews, jetterix nozzle, jetterix pressure nozzle, jetterix hose nozzle, jetterix high pressure nozzle, jetterix price, jetterix cost, is jetterix legit, jetterix scam, jetterix complaints, how does jetterix work, where to buy jetterix, jetterix discount, jetterix deal, jetterix pressure washer, jetterix garden hose, jetterix 2026, jetterix water nozzle"
+EN_KW = ("jetterix, jetterix review, jetterix reviews, jetterix nozzle review, is jetterix legit, "
+ "is jetterix a scam, jetterix scam, jetterix legit, jetterix complaints, jetterix worth it, "
+ "does jetterix work, does jetterix really work, jetterix results, jetterix before and after, "
+ "jetterix real reviews, jetterix customer reviews, jetterix ratings, jetterix opinions, jetterix testimonials, "
+ "jetterix price, jetterix cost, how much is jetterix, where to buy jetterix, buy jetterix, jetterix for sale, "
+ "jetterix discount, jetterix deal, jetterix offer, jetterix coupon, jetterix promo code, "
+ "how does jetterix work, how to use jetterix, jetterix nozzle, jetterix hose nozzle, jetterix pressure nozzle, "
+ "jetterix high pressure nozzle, jetterix water nozzle, jetterix spray nozzle, jetterix garden hose nozzle, "
+ "jetterix hose attachment, jetterix pressure washer, jetterix garden hose, jetterix pressure hose nozzle, "
+ "jetterix official website, jetterix official site, jetterix usa, jetterix uk, jetterix australia, "
+ "jetterix 2026, jetterix amazon, jetterix washer, jetterix cleaner, jeterix, jeterix review, jetrix, jetterrix, jeterrix")
 
 GEOS.append(english(
  "us","US","en-US","en_US","$","English (US)",
@@ -157,7 +167,16 @@ GEOS.append(dict(
  reviewword="TEST", reviews_word="Bewertungen", lang_label="Deutsch", rating="4.7", reviews=8000,
  title="Jetterix Erfahrungen: Seriös oder Abzocke? Test 2026",
  desc="Jetterix seriös oder Abzocke? Wir sind nicht der Verkäufer — unser ehrlicher Test 2026: echte Reinigungs-Erfahrungen, Kundenbewertungen, Preis und der offizielle Rabatt bis 75%.",
- keywords="jetterix, jetterix erfahrungen, jetterix test, jetterix bewertung, jetterix düse, jetterix hochdruckdüse, jetterix schlauchaufsatz, jetterix preis, jetterix kaufen, ist jetterix seriös, jetterix betrug, jetterix fake, wie funktioniert jetterix, jetterix rabatt, jetterix gartenschlauch, jetterix hochdruckreiniger, jetterix 2026, jetterix deutschland",
+ keywords=("jetterix, jetterix erfahrungen, jetterix erfahrung, jetterix erfahrungen deutsch, "
+   "jetterix erfahrungsbericht, jetterix test, jetterix bewertung, jetterix bewertungen, jetterix meinungen, "
+   "jetterix kritik, ist jetterix seriös, jetterix seriös, jetterix seriös oder abzocke, jetterix abzocke, "
+   "jetterix betrug, jetterix fake, jetterix schwindel, jetterix düse, jetterix hochdruckdüse, "
+   "jetterix schlauchaufsatz, jetterix gartenschlauch, jetterix gartenschlauch düse, jetterix hochdruckreiniger, "
+   "jetterix wasserdüse, jetterix preis, jetterix preise, jetterix kosten, jetterix kaufen, wo jetterix kaufen, "
+   "jetterix bestellen, jetterix rabatt, jetterix angebot, jetterix gutschein, jetterix gutscheincode, "
+   "wie funktioniert jetterix, jetterix anwendung, jetterix funktioniert, jetterix deutschland, "
+   "jetterix österreich, jetterix schweiz, jetterix 2026, jetterix erfahrungen 2026, jetterix amazon, "
+   "jetterix offizielle seite, jeterix, jeterix erfahrungen, jetrix, jetterrix"),
  eyebrow=BRAND+"™ Test · Aktualisiert "+pretty_for("de"),
  h1='Jetterix Erfahrungen: <span class="hl">seriös oder Abzocke?</span> Reinigt die Hochdruckdüse wirklich?',
  sub="Wir sind nicht der Verkäufer. Deshalb haben wir die Jetterix Hochdruckdüse an echten Aufgaben getestet — Einfahrt, Auto, Terrasse, Fassade. Hier lesen Sie, wie sie abschneidet, ehrliche Vor- und Nachteile und den heutigen offiziellen Rabatt.",
@@ -234,7 +253,15 @@ GEOS.append(dict(
  reviewword="AVIS", reviews_word="avis", lang_label="Français", rating="4.7", reviews=8000,
  title="Jetterix Avis : Arnaque ou Ça Marche ? Test 2026 ✓",
  desc="Jetterix : arnaque ou ça marche vraiment ? Nous ne sommes pas le vendeur — notre avis 2026 : tests de nettoyage réels, avis clients, prix et la remise officielle jusqu'à -75%.",
- keywords="jetterix, jetterix avis, jetterix test, jetterix buse, jetterix buse haute pression, jetterix nettoyeur, jetterix tuyau arrosage, jetterix prix, jetterix acheter, jetterix arnaque, jetterix fiable, comment fonctionne jetterix, jetterix promo, jetterix réduction, jetterix france, jetterix 2026, avis jetterix, jetterix lance haute pression",
+ keywords=("jetterix, jetterix avis, jetterix avis client, jetterix avis clients, jetterix avis négatif, "
+   "jetterix test, jetterix critique, jetterix arnaque, jetterix arnaque ou pas, jetterix fiable, "
+   "jetterix ça marche, jetterix est ce que ça marche, jetterix buse, jetterix buse haute pression, "
+   "jetterix nettoyeur, jetterix nettoyeur haute pression, jetterix tuyau arrosage, jetterix lance, "
+   "jetterix lance haute pression, jetterix jet, jetterix prix, jetterix combien ça coute, jetterix tarif, "
+   "jetterix acheter, ou acheter jetterix, jetterix commander, jetterix promo, jetterix réduction, "
+   "jetterix code promo, comment fonctionne jetterix, jetterix utilisation, jetterix france, jetterix belgique, "
+   "jetterix 2026, jetterix avis 2026, avis jetterix, jetterix amazon, jetterix site officiel, "
+   "jeterix, jeterix avis, jetrix, jetterrix, jetterix opinion"),
  eyebrow=BRAND+"™ Avis · Mis à jour "+pretty_for("fr"),
  h1='Jetterix Avis : <span class="hl">arnaque ou ça marche ?</span> Cette buse nettoie-t-elle vraiment ?',
  sub="Nous ne sommes pas le vendeur. Nous avons donc mis la buse haute pression Jetterix à l'épreuve sur de vrais travaux — allée, voiture, terrasse, façade. Voici ce qu'elle vaut, les vrais avantages et limites, et la remise officielle du jour.",
